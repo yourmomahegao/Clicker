@@ -1,0 +1,65 @@
+{
+  "dependencies": {
+    "axios": "^1.6.7",
+    "child_process": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "glob": "^10.3.10",
+    "hotkeys-js": "^3.13.7",
+    "jquery": "^3.7.1",
+    "jsautogui": "^0.0.20-dev",
+    "moment": "^2.30.1",
+    "npm-run-all": "^4.1.5",
+    "path": "^0.12.7",
+    "request-progress": "^3.0.0",
+    "sequelize": "^6.35.2",
+    "tedious": "^18.3.0",
+    "wget": "^0.0.1"
+  },
+  "devDependencies": {
+    "electron": "^22.3.27",
+    "electron-builder": "^24.12.0",
+    "electron-reloader": "^1.2.3"
+  },
+  "name": "clicker",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "yourmomahegao <yourmomahegao@gmail.com>",
+  "license": "CC0-1.0",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "compile": "node compile.js",
+    "decompile": "node decompile.js",
+    "dist": "electron-builder",
+    "dist-linux": "electron-builder --linux",
+    "dist-win64": "electron-builder --win --x64",
+    "pack": "electron-builder --dir",
+    "build": "npm-run-all --sequential compile dist decompile",
+    "build-all": "npm-run-all --sequential compile dist-linux dist-win64 decompile"
+  },
+  "build": {
+    "productName": "Clicker",
+    "appId": "org.erb.Clicker",
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "pacman"
+      ],
+      "icon": "build/icon.icns"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "public/img/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "Clicker Uninstall",
+      "allowToChangeInstallationDirectory": false
+    }
+  }
+}
