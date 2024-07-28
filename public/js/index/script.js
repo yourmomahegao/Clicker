@@ -2,7 +2,6 @@ class Clicker {
   constructor() {
     const self = this;
     this.MainContainer = $(".main-container");
-    this.SpeedElement = this.MainContainer.find("#speed");
     this.IntervalStartElement = this.MainContainer.find("#interval-start");
     this.IntervaEndElement = this.MainContainer.find("#interval-end");
     this.ToggleButtonElement = this.MainContainer.find("#toggle-button");
@@ -11,8 +10,6 @@ class Clicker {
     this.ToggleButton = localStorage.getItem("TOGGLE_BUTTON");
 
     // Loading variables
-    this.Speed = parseFloat(localStorage.getItem("VARIABLE_SPEED"));
-    this.Speed = this.Speed == null ? 0 : this.Speed;
     this.IntervalStart = parseFloat(localStorage.getItem("VARIABLE_INTERVAL_START"));
     this.IntervalStart = this.IntervalStart == null ? 0 : this.IntervalStart;
     this.IntervalEnd = parseFloat(localStorage.getItem("VARIABLE_INTERVAL_END"));
@@ -76,6 +73,7 @@ class Clicker {
     this.ToggleButtonElement.text("Нажмите кнопку...");
     this.ToggleButtonElement.on("keyup", function (e) {
       self.ToggleButtonEndInput(e.key);
+      window.location.reload();
     });
   }
 
@@ -88,11 +86,6 @@ class Clicker {
     const self = this;
     this.ToggleButtonElement.on("click", function () {
       self.ToggleButtonInput();
-    });
-
-    this.SpeedElement.on("input", function () {
-      localStorage.setItem("VARIABLE_SPEED", self.SpeedEement.val());
-      self.Speed = parseFloat(self.SpeedElement.val());
     });
 
     this.IntervalStartElement.on("input", function () {
@@ -120,10 +113,6 @@ class Clicker {
     }
 
     // Loading saved variables
-    if (this.Speed != null) {
-      this.SpeedElement.val(this.Speed);
-    }
-
     if (this.IntervalStart != null) {
       this.IntervalStartElement.val(this.IntervalStart);
     }

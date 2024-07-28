@@ -11,7 +11,7 @@ try {
 } catch {}
 
 var win;
-var debug = true;
+var debug = false;
 
 function createWindow() {
   win = new BrowserWindow({
